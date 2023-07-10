@@ -1,15 +1,12 @@
 #!/usr/bin/env sh
 
-# 确保脚本抛出遇到的错误
+# 忽略错误
 set -e
 
-# 删除文件需要根据实际打包的目录进行删除
-rm -rf docs/.vitepress/dist/
+# 构建
+npm run docs:build
 
-# 生成静态文件
-yarn docs:build
-
-# 进入生成的文件夹
+# 进入待发布的目录
 cd docs/.vitepress/dist
 
 # 如果是发布到自定义域名
@@ -19,7 +16,10 @@ git init
 git add -A
 git commit -m 'deploy'
 
-# 如果发布到 https://nile52.github.io 修改仓库地址
-git push -f git@github.com:nile52/nile52.github.io.git master:gh-pages
+# 如果部署到 https://<USERNAME>.github.io
+git push -f git@github.com:nile52/nile52.github.io.git main
+
+# 如果是部署到 https://<USERNAME>.github.io/<REPO>
+# git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages
 
 cd -
