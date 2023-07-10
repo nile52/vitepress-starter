@@ -19,7 +19,7 @@ git init
 git add -A
 git commit -m 'deploy'
 
-如果发布到 https://nile52.github.io 修改仓库地址
+# 如果发布到 https://nile52.github.io 修改仓库地址
 git push -f git@github.com:nile52/nile52.github.io.git master:gh-pages
 
 cd -
